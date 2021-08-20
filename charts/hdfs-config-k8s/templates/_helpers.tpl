@@ -55,23 +55,23 @@ the only special index that helm template gives us.
 {{- $journalnodeName := include "hdfs-k8s.journalnode.fullname" . -}}
 {{- $replicas := .Values.global.journalnodeQuorumSize | int -}}
 {{- range $index, $e := until $replicas -}}
-  {{ printf "hdfs/%s-%d.%s.%s" $journalnodeName $index $journalnodeName $domain }},
+  {{ printf "%s-%d.%s.%s" $journalnodeName $index $journalnodeName $domain }},
 {{- end -}}
 {{- $datanodeName := include "hdfs-k8s.datanode.fullname" . -}}
 {{- $replicas := .Values.global.datanodeSize | int -}}
 {{- range $index, $e := until $replicas -}}
-  {{ printf "hdfs/%s-%d.%s.%s" $datanodeName $index $datanodeName $domain }},
+  {{ printf "%s-%d.%s.%s" $datanodeName $index $datanodeName $domain }},
 {{- end -}}
 {{- $namenodeName := include "hdfs-k8s.namenode.fullname" . -}}
 {{- $replicas := 2 -}}
 {{- range $index, $e := until $replicas -}}
   {{- if ne $index 0 -}}
-    {{ printf "hdfs/%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }},
+    {{ printf "%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }},
   {{- end -}}
 {{- end -}}
 {{- range $index, $e := until $replicas -}}
   {{- if eq $index 0 -}}
-    {{ printf "hdfs/%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }}
+    {{ printf "%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }}
   {{- end -}}
 {{- end -}}
 {{- end -}}

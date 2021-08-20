@@ -75,7 +75,7 @@ data:
       </property>
       <property>
         <name>dfs.namenode.kerberos.internal.spnego.principal</name>
-        <value>{{ template "hdfs-principal" . }}</value>
+        <value>{{ template "http-principal" . }}</value>
       </property>
       <property>
         <name>dfs.namenode.keytab.file</name>
@@ -83,11 +83,11 @@ data:
       </property>
       <property>
         <name>dfs.web.authentication.kerberos.principal</name>
-        <value>{{ template "hdfs-principal" . }}</value>
+        <value>{{ template "http-principal" . }}</value>
       </property>
       <property>
         <name>dfs.web.authentication.kerberos.keytab</name>
-        <value>/etc/security/hdfs.keytab</value>
+        <value>/etc/security/http.keytab</value>
       </property>
       <property>
         <name>dfs.journalnode.kerberos.principal</name>
@@ -95,7 +95,7 @@ data:
       </property>
       <property>
         <name>dfs.journalnode.kerberos.internal.spnego.principal</name>
-        <value>{{ template "hdfs-principal" . }}</value>
+        <value>{{ template "http-principal" . }}</value>
       </property>
       <property>
         <name>dfs.journalnode.keytab.file</name>
