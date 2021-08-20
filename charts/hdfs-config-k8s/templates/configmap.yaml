@@ -73,19 +73,20 @@ data:
         <name>dfs.namenode.kerberos.principal</name>
         <value>{{ template "hdfs-principal" . }}</value>
       </property>
-      {{/*
-      TODO: Check if the https principal is no longer needed in newer Hadoop version.
-      */}}
       <property>
-        <name>dfs.namenode.kerberos.https.principal</name>
+        <name>dfs.namenode.kerberos.internal.spnego.principal</name>
         <value>{{ template "hdfs-principal" . }}</value>
+      </property>
+      <property>
+        <name>dfs.namenode.keytab.file</name>
+        <value>/etc/security/hdfs.keytab</value>
       </property>
       <property>
         <name>dfs.web.authentication.kerberos.principal</name>
         <value>{{ template "hdfs-principal" . }}</value>
       </property>
       <property>
-        <name>dfs.namenode.keytab.file</name>
+        <name>dfs.web.authentication.kerberos.keytab</name>
         <value>/etc/security/hdfs.keytab</value>
       </property>
       <property>
@@ -102,10 +103,6 @@ data:
       </property>
       <property>
         <name>dfs.datanode.kerberos.principal</name>
-        <value>{{ template "hdfs-principal" . }}</value>
-      </property>
-      <property>
-        <name>dfs.datanode.kerberos.https.principal</name>
         <value>{{ template "hdfs-principal" . }}</value>
       </property>
       <property>
