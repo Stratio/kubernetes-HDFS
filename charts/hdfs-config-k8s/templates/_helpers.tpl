@@ -51,26 +51,27 @@ last item does not have comma. It uses index 0 for the last item since that is
 the only special index that helm template gives us.
 */}}
 {{- define "hdfs-keytabs-principals" -}}
+{{- $domain := include "svc-domain" . -}}
 {{- $journalnodeName := include "hdfs-k8s.journalnode.fullname" . -}}
 {{- $replicas := .Values.global.journalnodeQuorumSize | int -}}
 {{- range $index, $e := until $replicas -}}
-  {{ printf "hdfs/%s-%d" $journalnodeName $index }},
+  {{ printf "hdfs/%s-%d.%s.%s" $journalnodeName $index $journalnodeName $domain }},
 {{- end -}}
 {{- $datanodeName := include "hdfs-k8s.datanode.fullname" . -}}
 {{- $replicas := .Values.global.datanodeSize | int -}}
 {{- range $index, $e := until $replicas -}}
-  {{ printf "hdfs/%s-%d" $datanodeName $index }},
+  {{ printf "hdfs/%s-%d.%s.%s" $datanodeName $index $datanodeName $domain }},
 {{- end -}}
 {{- $namenodeName := include "hdfs-k8s.namenode.fullname" . -}}
 {{- $replicas := 2 -}}
 {{- range $index, $e := until $replicas -}}
   {{- if ne $index 0 -}}
-    {{ printf "hdfs/%s-%d" $namenodeName $index }},
+    {{ printf "hdfs/%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }},
   {{- end -}}
 {{- end -}}
 {{- range $index, $e := until $replicas -}}
   {{- if eq $index 0 -}}
-    {{ printf "hdfs/%s-%d" $namenodeName $index }}
+    {{ printf "hdfs/%s-%d.%s.%s" $namenodeName $index $namenodeName $domain }}
   {{- end -}}
 {{- end -}}
 {{- end -}}
