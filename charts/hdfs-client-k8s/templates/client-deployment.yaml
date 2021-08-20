@@ -40,7 +40,7 @@ spec:
             {{- if .Values.global.kerberos.enabled }}
             - name: kerberos-config
               mountPath: /etc/krb5.conf
-              subPath: {{ .Values.global.kerberosConfigFileName }}
+              subPath: {{ .Values.global.kerberos.configFileName }}
               readOnly: true
             {{- end }}
       restartPolicy: Always
