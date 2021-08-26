@@ -199,6 +199,12 @@ global:
 
     ## Vault role to get Vault secrets during secret injection
     role: default
+  dockerVersion:
+    hadoop: 2.7.2
+    hadoopNamenode: 2.7.2
+    hadoopDatanode: 2.7.2
+    busybox: 1.27.1
+    mschlimbJsvc: sha256:bf20eb9a319e9a2f87473d8da7418d21503a97528b932800b6b8417cd31e30ef
 
 ## Tags and conditions for triggering a group of relevant subcharts.
 tags:
