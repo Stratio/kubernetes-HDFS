@@ -101,7 +101,8 @@ spec:
       {{- end }}
       containers:
         - name: hdfs-journalnode
-          image: uhopper/hadoop-namenode:{{ .Values.global.dockerVersion.hadoopNamenode }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: HADOOP_CUSTOM_CONF_DIR
               value: /etc/hadoop-custom-conf
@@ -137,7 +138,8 @@ spec:
      {{- if and .Values.global.kerberos.enabled .Values.global.vault.enabled }}
       initContainers:
         - name: copy-kerberos-keytab
-          image: busybox:{{ .Values.global.dockerVersion.busybox }}
+          image: {{ .Values.initBusybox.repository }}:{{ .Values.initBusybox.tag }}
+          imagePullPolicy: {{ .Values.initBusybox.pullPolicy }}
           command: ['sh', '-c']
           args:
             - |

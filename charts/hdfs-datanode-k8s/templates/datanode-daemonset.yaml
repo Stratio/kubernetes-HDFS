@@ -120,7 +120,8 @@ spec:
       {{- end }}
       containers:
         - name: datanode
-          image: uhopper/hadoop-datanode:{{ .Values.global.dockerVersion.hadoopDatanode }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy}}
           env:
             - name: HADOOP_CUSTOM_CONF_DIR
               value: /etc/hadoop-custom-conf
@@ -178,7 +179,8 @@ spec:
       {{- if and .Values.global.kerberos.enabled .Values.global.vault.enabled }}
       initContainers:
         - name: copy-kerberos-keytab
-          image: busybox:{{ .Values.global.dockerVersion.busybox }}
+          image: {{ .Values.initBusybox.repository }}:{{ .Values.initBusybox.tag }}
+          imagePullPolicy: {{ .Values.initBusybox.pullPolicy }}
           command: ['sh', '-c']
           args:
             - |
@@ -195,7 +197,8 @@ spec:
         {{- if .Values.global.kerberos.jsvcEnabled }}
         - name: copy-jsvc
           # Pull by digest because the image doesn't have tags to pin.
-          image: mschlimb/jsvc@{{ .Values.global.dockerVersion.mschlimbJsvc }}
+          image: {{ .Values.initJsvc.repository }}@{{ .Values.initJsvc.tag }}
+          imagePullPolicy: {{ .Values.initJsvc.pullPolicy }}
           command: ['sh', '-c']
           args:
             - cp /usr/bin/jsvc /jsvc-home/jsvc
