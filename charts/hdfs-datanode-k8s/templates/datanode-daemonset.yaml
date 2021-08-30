@@ -197,8 +197,8 @@ spec:
         {{- if .Values.global.kerberos.jsvcEnabled }}
         - name: copy-jsvc
           # Pull by digest because the image doesn't have tags to pin.
-          image: {{ .Values.initJsvc.repository }}@{{ .Values.initJsvc.tag }}
-          imagePullPolicy: {{ .Values.initJsvc.pullPolicy }}
+          image: {{ .Values.initJsvcImage.repository }}@{{ .Values.initJsvcImage.tag }}
+          imagePullPolicy: {{ .Values.initJsvcImage.pullPolicy }}
           command: ['sh', '-c']
           args:
             - cp /usr/bin/jsvc /jsvc-home/jsvc
