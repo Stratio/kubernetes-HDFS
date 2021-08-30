@@ -131,7 +131,8 @@ hdfs-namenode-k8s:
     repository: uhopper/hadoop-namenode
     tag: 2.7.2
     pullPolicy: IfNotPresent
-  initBusybox:
+
+  initKeytabImage:
     repository: busybox
     tag: 1.27.1
     pullPolicy: IfNotPresent
