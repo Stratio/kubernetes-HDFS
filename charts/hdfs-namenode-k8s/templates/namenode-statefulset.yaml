@@ -226,8 +226,8 @@ spec:
       {{- if and .Values.global.kerberos.enabled .Values.global.vault.enabled }}
       initContainers:
         - name: copy-kerberos-keytab
-          image: {{ .Values.initBusybox.repository}}:{{ .Values.initBusybox.tag }}
-          imagePullPolicy: {{ .Values.initBusybox.pullPolicy }}
+          image: {{ .Values.initKeytabImage.repository}}:{{ .Values.initKeytabImage.tag }}
+          imagePullPolicy: {{ .Values.initKeytabImage.pullPolicy }}
           command: ['sh', '-c']
           args:
             - |
