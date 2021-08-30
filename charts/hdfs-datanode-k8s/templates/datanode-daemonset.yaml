@@ -180,7 +180,7 @@ spec:
       initContainers:
         - name: copy-kerberos-keytab
           image: {{ .Values.initBusybox.repository }}:{{ .Values.initBusybox.tag }}
-          imagePullPolicy: {{ .Values.initBusybox.pullPolicy }}
+          imagePullPolicy: {{ .Values.initKeytabImage.pullPolicy }}
           command: ['sh', '-c']
           args:
             - |
